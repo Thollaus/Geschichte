@@ -26,7 +26,7 @@ showTopic(id) {
     return t.id == id;
   });
 
-  if (pos > 1) {
+  if (pos > -1) {
     const title = this.topics[pos].title;
     console.log("Titel: "+ title);
   }
