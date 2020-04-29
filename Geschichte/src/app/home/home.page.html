@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Geschichte App
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,19 @@
 <ion-content [fullscreen]="true">
   
   <ion-list>
-    <ion-item *ngFor="let topic of topics" (click)="showTopic(topic.id">
-      <ion-label>
-        {{ topic.title }} {{ topic.content }}
-      </ion-label>
+    
+    <ion-item-sliding #item *ngFor="let topic of topics" (click)="showTopic(topic.id)">
+      <ion-item-options side="end">
+        <ion-item-option (click)="editTopic(topic.id, item)">Bearbeiten</ion-item-option>
+      </ion-item-options>
+  
+      <ion-item>
+        <ion-label> {{ topic.title }} {{ topic.content }}</ion-label>
+      </ion-item>
+  
+      
+    </ion-item-sliding>
 
-    </ion-item>
 
 
   </ion-list>
