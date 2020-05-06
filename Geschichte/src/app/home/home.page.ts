@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import {v4 as uuidv4} from "uuid"
 import { ModalController } from '@ionic/angular';
 import { EditPage } from '../edit/edit.page';
-import { isNgTemplate } from '@angular/compiler';
+import { Topic } from 'src/Models/topic';
 
 @Component({
   selector: 'app-home',
@@ -13,17 +12,23 @@ export class HomePage {
 
 
 topics = [
-  {id: uuidv4(), title: "Kalter Krieg", content: "sssss"},
-  {id: uuidv4(), title: "Kalter Krieg", content: "gggg"}
-]
+  new Topic("Augsburger ...","Dieser kam zu", ),
+  new Topic("Kalter Krieg", "sssss", ),
+  new Topic("Kalter Krieg", "gggg",),
+  new Topic("Zweiter Weltkrieg", "Es kämpften die Allierten gegen die Wehrmacht")
+ 
+];
 
 
 
   constructor(private modalCtrl: ModalController) {}
 
   ionViewWillEnter () {
-let id = uuidv4();
-console.log(this.topics)
+console.log(this.topics);
+
+let to = new Topic("Augsburger ...","Fried")
+
+
 }
 
 async editTopic(id, item) {
@@ -40,6 +45,12 @@ async editTopic(id, item) {
     
     await modal.present();
 
+    const { data } = await modal.onWillDismiss()
+
+    if (data) {
+      console.log(data);
+      this.topics[pos].title = data.title
+    }
   }
   // close sliding item
   item.close();

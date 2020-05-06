@@ -30,4 +30,16 @@ titleForm: FormGroup
 
   }
 
-}
+  async close() {
+    const result = {
+      title: this.titleForm.get("title").value
+    };
+    await this.modalCtrl.dismiss(result);
+ }
+
+      
+
+  }
+
+
+
